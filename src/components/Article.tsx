@@ -41,11 +41,11 @@ export const Article = ({ article, onClickDelete }: IProps) => {
               {article.title}
             </h2>
             <div className="border-b my-2 pb-1 flex gap-2 items-center">
-              <p className="text-green-700 font-medium text-[13px]">
+              <p className="text-green-700 font-medium text-sm">
                 1 COMPANY MENTIONED
               </p>
               |
-              <p className="font-medium text-[13px]">
+              <p className="font-medium text-sm">
                 AUTO-SUMMARISED BY SCOUTASIA
               </p>
             </div>

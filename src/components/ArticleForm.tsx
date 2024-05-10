@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { IArticle, ICreateArticle } from "../models/article";
 import { createArticleAPI, updateArticleAPI } from "../services/articles";
@@ -12,7 +12,7 @@ interface IProps {
   article?: IArticle;
 }
 
-export const ArticleForm = ({ article }: IProps) => {
+export const ArticleForm = memo(({ article }: IProps) => {
   const isEdit = !!article;
 
   const [loading, setLoading] = useState(false);
@@ -56,49 +56,49 @@ export const ArticleForm = ({ article }: IProps) => {
   }, [article]);
 
   return (
-    <>
-      {loading && <Loading />}
-      <div className="flex items-center justify-center p-12">
-        <div className="mx-auto w-full">
-          <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
-            <InputText
-              name="title"
-              label="Title"
-              placeholder="Enter the title of the article"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.title}
-              msg={formik.touched.title ? formik.errors.title : ""}
-            />
-            <InputTextarea
-              name="summary"
-              label="Summary"
-              placeholder="Enter the summary of the article"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.summary}
-              msg={formik.touched.summary ? formik.errors.summary : ""}
-            />
-            <InputText
-              name="publisher"
-              label="Publisher"
-              placeholder="Enter the publisher of the article"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.publisher}
-              msg={formik.touched.publisher ? formik.errors.publisher : ""}
-            />
-            <div className="mt-5">
-              <button
-                type="submit"
-                className="hover:shadow-form rounded-md bg-green-700 py-3 px-8 text-base font-semibold text-white outline-none"
-              >
-                {isEdit ? "Update" : "Create"}
-              </button>
-            </div>
-          </form>
+      <>
+        {loading && <Loading />}
+        <div className="flex items-center justify-center p-12">
+          <div className="mx-auto w-full">
+            <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+              <InputText
+                  name="title"
+                  label="Title"
+                  placeholder="Enter the title of the article"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.title}
+                  msg={formik.touched.title ? formik.errors.title : ""}
+              />
+              <InputTextarea
+                  name="summary"
+                  label="Summary"
+                  placeholder="Enter the summary of the article"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.summary}
+                  msg={formik.touched.summary ? formik.errors.summary : ""}
+              />
+              <InputText
+                  name="publisher"
+                  label="Publisher"
+                  placeholder="Enter the publisher of the article"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.publisher}
+                  msg={formik.touched.publisher ? formik.errors.publisher : ""}
+              />
+              <div className="mt-5">
+                <button
+                    type="submit"
+                    className="hover:shadow-form rounded-md bg-green-700 py-3 px-8 text-base font-semibold text-white outline-none"
+                >
+                  {isEdit ? "Update" : "Create"}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </>
+      </>
   );
-};
+});

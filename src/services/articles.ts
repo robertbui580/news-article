@@ -1,7 +1,7 @@
 import { axiosClient } from "../libs";
 import { ICreateArticle } from "../models/article";
 
-const PREFIX = "/articles";
+const PREFIX = "/article";
 
 export const getListArticlesAPI = async () => {
   return axiosClient.get(`${PREFIX}`);
